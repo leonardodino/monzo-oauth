@@ -3,5 +3,5 @@ coverage/
 .DS_Store
 *.tsbuildinfo
 *.log
-*.js
-*.map
+*.tgz
+lib/

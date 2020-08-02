@@ -2,20 +2,19 @@
   "name": "monzo-oauth",
   "version": "0.0.0-alpha",
   "license": "MIT",
-  "bin": "./server.js",
+  "bin": "./lib/server.js",
   "files": [
-    "*.js",
-    "*.js.map",
-    "*.html"
+    "lib/**"
   ],
   "engines": {
     "node": ">=8"
   },
   "scripts": {
-    "dev": "nodemon server.ts",
-    "start": "node server.js",
-    "build": "tsc",
-    "prepublishOnly": "tsc",
+    "dev": "nodemon ./src/server.ts",
+    "start": "node ./lib/server.js",
+    "prebuild": "rm -rf lib",
+    "build": "tsc && cp src/*.html lib",
+    "prepublishOnly": "yarn build",
     "format": "prettier --write --ignore-path .gitignore ."
   },
   "devDependencies": {

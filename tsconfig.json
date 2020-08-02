@@ -1,5 +1,7 @@
 {
+  "include": ["src"],
   "compilerOptions": {
+    "outDir": "lib",
     "strict": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
