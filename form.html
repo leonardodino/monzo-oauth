@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>monzo-oauth</title>
+    <style>
+      body {
+        font: normal normal normal 1rem/1.5rem sans-serif;
+      }
+      label {
+        display: block;
+        padding: 0.5rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1><code>monzo-oauth</code></h1>
+    <form action="/start" method="POST" autocomplete="off">
+      <input type="hidden" name="csrfToken" value="{{csrfToken}}" />
+      <label>
+        <div>Client ID</div>
+        <input
+          name="clientId"
+          autocomplete="off"
+          required
+          placeholder="oauth2client_xxxxxxxxxxxxxxxxxxxxxx"
+          pattern="^oauth2client_.*"
+          size="35"
+        />
+      </label>
+      <label>
+        <div>Client Secret</div>
+        <input
+          name="clientSecret"
+          autocomplete="off"
+          required
+          placeholder="mnzconf.xxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          pattern="^(?:mnzconf|mnzpub).*"
+          size="92"
+        />
+      </label>
+      <label>
+        <div>Redirect URI</div>
+        <input
+          name="redirectUri"
+          autocomplete="off"
+          required
+          value="{{redirectUri}}"
+          pattern="https?://.*"
+          size="30"
+        />
+      </label>
+      <label></label>
+      <button type="submit">start oauth flow</button>
+    </form>
+  </body>
+</html>
