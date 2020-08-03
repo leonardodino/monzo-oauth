@@ -55,8 +55,7 @@ test('redirect', async () => {
   expect(await getFormValidity()).toBe(true)
 
   await page.click(selectors.submitButton)
-  await page.waitForNavigation()
+  await expect(page).toEqualText('h2', data.clientName)
   expect(page.url()).toMatch(authUrlRegex)
   expect(decodeURIComponent(page.url())).toContain(data.redirectUri)
-  await expect(page).toEqualText('h2', data.clientName)
 })

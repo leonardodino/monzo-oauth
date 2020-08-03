@@ -6,9 +6,11 @@ process.env.PORT = port.toString()
 if (port === 0) throw new Error('PORT=0 is not supported during tests')
 
 const command = e2e ? 'npx -q monzo-oauth-*' : 'ts-node ./src'
+const usedPortAction = CI ? 'kill' : 'error'
+const options = { env: process.env }
 
 module.exports = {
   // browsers: ['chromium', 'webkit', 'firefox'],
   launchOptions: CI ? { args: ['--no-sandbox'] } : {},
-  serverOptions: { command, port, options: { env: process.env } },
+  serverOptions: { command, port, options, usedPortAction },
 }
