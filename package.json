@@ -3,6 +3,8 @@
   "version": "0.0.0-alpha",
   "license": "MIT",
   "bin": "./lib/server.js",
+  "repository": "leonardodino/monzo-oauth",
+  "homepage": "https://monzo-oauth.glitch.me",
   "files": [
     "lib/**"
   ],

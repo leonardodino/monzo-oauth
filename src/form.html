@@ -4,9 +4,17 @@
     <meta charset="utf-8" />
     <title>monzo-oauth</title>
     <style>
+      html {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+      }
       body {
         font: normal normal normal 1rem/1.5rem sans-serif;
         margin: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
       }
       body * {
         display: block;
@@ -21,6 +29,9 @@
       button {
         margin: 2rem 0 1.5rem;
         padding: 0.25rem 0.5rem;
+      }
+      footer {
+        margin-top: auto;
       }
     </style>
   </head>
@@ -64,5 +75,8 @@
       </label>
       <button type="submit">start oauth flow</button>
     </form>
+    <footer>
+      <a href="https://github.com/leonardodino/monzo-oauth">view source</a>
+    </footer>
   </body>
 </html>

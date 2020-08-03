@@ -4,14 +4,31 @@
     <meta charset="utf-8" />
     <title>monzo-oauth json</title>
     <style>
+      html {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+      }
       body {
         font: normal normal normal 1rem/1.5rem sans-serif;
         margin: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      body * {
+        display: block;
+      }
+      footer {
+        margin-top: auto;
       }
     </style>
   </head>
   <body>
     <h1><code>monzo-oauth</code></h1>
     <pre>{{json}}</pre>
+    <footer>
+      <a href="https://github.com/leonardodino/monzo-oauth">view source</a>
+    </footer>
   </body>
 </html>
