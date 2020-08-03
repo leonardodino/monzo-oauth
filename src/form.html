@@ -6,10 +6,21 @@
     <style>
       body {
         font: normal normal normal 1rem/1.5rem sans-serif;
+        margin: 1.5rem;
+      }
+      body * {
+        display: block;
       }
       label {
-        display: block;
-        padding: 0.5rem 0;
+        margin: 1rem 0;
+      }
+      input {
+        padding: 0.25rem;
+        margin: 0.25rem 0;
+      }
+      button {
+        margin: 2rem 0 1.5rem;
+        padding: 0.25rem 0.5rem;
       }
     </style>
   </head>
@@ -20,6 +31,7 @@
       <label>
         <div>Client ID</div>
         <input
+          autofocus
           name="clientId"
           autocomplete="off"
           required
@@ -50,7 +62,6 @@
           size="30"
         />
       </label>
-      <label></label>
       <button type="submit">start oauth flow</button>
     </form>
   </body>

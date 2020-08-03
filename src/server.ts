@@ -68,7 +68,9 @@ const renderRedirect = (props: { authUrl: string }) =>
     .replace('{{authUrl}}', props.authUrl)
 
 const renderJSON = (props: Record<string, any>) =>
-  `<pre>${JSON.stringify(props, null, 2)}</pre>`
+  fs
+    .readFileSync(path.join(__dirname, 'json.html'), 'utf8')
+    .replace('{{json}}', JSON.stringify(props, null, 2))
 
 const fetchToken = (params: StartBody, code: string) =>
   new Promise<any>((resolve, reject) => {
