@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import http from 'http'
-import https from 'https'
-import fs from 'fs'
-import path from 'path'
-import querystring from 'querystring'
+import { createServer, IncomingMessage, ServerResponse } from 'http'
+import { request } from 'https'
+import { readFileSync } from 'fs'
+import { join } from 'path'
+import { parse, stringify } from 'querystring'
 
 const hostname = 'localhost'
 let port = process.env.PORT ? parseInt(process.env.PORT) : 5000
@@ -24,10 +24,7 @@ type CodeQueryString = {
   state: string
 }
 
-type Handler = (
-  req: http.IncomingMessage,
-  res: http.ServerResponse,
-) => Promise<string>
+type Handler = (req: IncomingMessage, res: ServerResponse) => Promise<string>
 
 const isStartBody = (input: any): input is StartBody => {
   if (!input || typeof input !== 'object') return false
@@ -57,25 +54,25 @@ const read = (readable: NodeJS.ReadableStream): Promise<string> =>
 const generateCsrfToken = () => Math.random().toString(36).substring(2, 15)
 
 const renderForm = (props: { csrfToken: string; redirectUri: string }) =>
-  fs
-    .readFileSync(path.join(__dirname, 'form.html'), 'utf8')
+  readFileSync(join(__dirname, 'form.html'), 'utf8')
+    .toString()
     .replace('{{csrfToken}}', props.csrfToken)
     .replace('{{redirectUri}}', props.redirectUri)
 
 const renderRedirect = (props: { authUrl: string }) =>
-  fs
-    .readFileSync(path.join(__dirname, 'redirect.html'), 'utf8')
+  readFileSync(join(__dirname, 'redirect.html'), 'utf8')
+    .toString()
     .replace('{{authUrl}}', props.authUrl)
 
 const renderJSON = (props: Record<string, any>) =>
-  fs
-    .readFileSync(path.join(__dirname, 'json.html'), 'utf8')
+  readFileSync(join(__dirname, 'json.html'), 'utf8')
+    .toString()
     .replace('{{json}}', JSON.stringify(props, null, 2))
 
 const fetchToken = (params: StartBody, code: string) =>
   new Promise<any>((resolve, reject) => {
     const body = Buffer.from(
-      querystring.stringify({
+      stringify({
         grant_type: 'authorization_code',
         client_id: params.clientId,
         client_secret: params.clientSecret,
@@ -92,7 +89,7 @@ const fetchToken = (params: StartBody, code: string) =>
       },
     }
 
-    const req = https.request(tokenUrl, options, (res) => {
+    const req = request(tokenUrl, options, (res) => {
       if (!res.statusCode || res.statusCode > 299) {
         return reject(`HTTP ${res.statusCode || '000'} ${res.statusMessage}`)
       }
@@ -116,12 +113,12 @@ const handler: Handler = async (req, res) => {
     req.headers['content-type'] &&
     req.headers['content-type'].startsWith('application/x-www-form-urlencoded')
   ) {
-    const body = querystring.parse(await read(req))
+    const body = parse(await read(req))
     if (!isStartBody(body)) throw 'invalid values'
 
     memory.set(body.csrfToken, body)
 
-    const query = querystring.stringify({
+    const query = stringify({
       client_id: body.clientId,
       redirect_uri: body.redirectUri,
       response_type: 'code',
@@ -136,7 +133,7 @@ const handler: Handler = async (req, res) => {
   }
 
   if (req.method === 'GET' && /\?./.test(req.url || '')) {
-    const qs = querystring.parse(req.url!.replace(/^.+\?/, ''))
+    const qs = parse(req.url!.replace(/^.+\?/, ''))
     if (!isCodeQueryString(qs)) throw 'invalid query string'
     const data = memory.get(qs.state)
     if (!data) throw 'unknown "state"'
@@ -149,7 +146,7 @@ const handler: Handler = async (req, res) => {
   })
 }
 
-const server = http.createServer((req, res) => {
+const server = createServer((req, res) => {
   const request = `${req.method} ${req.url?.replace(/\?.*/, '')}`
   const promise = handler(req, res).then(
     (body) => res.end(body),

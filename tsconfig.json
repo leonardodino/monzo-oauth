@@ -3,11 +3,7 @@
   "compilerOptions": {
     "outDir": "lib",
     "strict": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "module": "commonjs",
-    "target": "es2018",
-    "sourceMap": true,
-    "inlineSources": true
+    "target": "es2018"
   }
 }
