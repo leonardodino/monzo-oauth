@@ -2,20 +2,20 @@
   "name": "monzo-oauth",
   "version": "0.0.0-alpha",
   "license": "MIT",
-  "bin": "./lib/server.js",
+  "bin": "./dist/index.js",
   "repository": "leonardodino/monzo-oauth",
   "homepage": "https://monzo-oauth.glitch.me",
   "files": [
-    "lib/**"
+    "dist/**"
   ],
   "engines": {
     "node": ">=8"
   },
   "scripts": {
-    "dev": "nodemon ./src/server.ts",
-    "start": "node ./lib/server.js",
-    "prebuild": "rm -rf lib",
-    "build": "tsc && cp src/*.html lib && chmod +x ./lib/server.js",
+    "dev": "nodemon ./src/index.ts",
+    "start": "node ./dist/index.js",
+    "prebuild": "rm -rf dist",
+    "build": "tsc && cp src/*.html dist && chmod +x dist/index.js",
     "test": "JEST_PLAYWRIGHT_CONFIG=jest-playwright.config.ts jest",
     "e2e": "yarn build && yarn pack && e2e=true yarn test",
     "prepublishOnly": "yarn e2e",

@@ -4,4 +4,4 @@ coverage/
 *.tsbuildinfo
 *.log
 *.tgz
-lib/
+dist/
