@@ -1,0 +1,10 @@
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: leonardodino/setup-playwright@main
+      - run: yarn --frozen-lockfile
+      - run: yarn e2e
