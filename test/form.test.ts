@@ -1,6 +1,3 @@
-/// <reference types="jest-playwright-preset" />
-/// <reference types="expect-playwright" />
-
 const selectors = {
   csrfTokenInput: 'form input[name="csrfToken"]',
   redirectUriInput: 'form input[value^="http"]',

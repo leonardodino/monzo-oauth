@@ -43,6 +43,17 @@
     ],
     "transform": {
       "^.+\\.ts$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfig": {
+          "types": [
+            "jest",
+            "jest-playwright-preset",
+            "expect-playwright"
+          ]
+        }
+      }
     }
   }
 }
