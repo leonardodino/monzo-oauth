@@ -19,7 +19,7 @@
     "postbuild": "echo \"$(awk '{sub(/ts-node/, \"node\"); print}' dist/index.js)\" > dist/index.js",
     "test": "JEST_PLAYWRIGHT_CONFIG=jest-playwright.config.ts jest",
     "genv": "env",
-    "e2e": "yarn build && yarn pack --filename monzo-oauth.tgz && e2e=true yarn test",
+    "e2e": "yarn build && yarn pack --filename monzo-oauth.tgz && npx=true yarn test",
     "prepublishOnly": "yarn e2e",
     "format": "prettier --write --ignore-path .gitignore ."
   },

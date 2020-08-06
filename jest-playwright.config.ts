@@ -1,11 +1,11 @@
 const CI = process.env.GITHUB_ACTIONS === 'true' || process.env.CI === 'true'
-const e2e = process.env.e2e === 'true'
+const npx = process.env.npx === 'true'
 const port = process.env.PORT ? parseInt(process.env.PORT) : 5000
 process.env.PORT = port.toString()
 
 if (port === 0) throw new Error('PORT=0 is not supported during tests')
 
-const command = e2e ? 'npx ./monzo-oauth.tgz' : 'ts-node ./src'
+const command = npx ? 'npx ./monzo-oauth.tgz' : 'ts-node ./src'
 const usedPortAction = CI ? 'kill' : 'error'
 const options = { env: process.env }
 
