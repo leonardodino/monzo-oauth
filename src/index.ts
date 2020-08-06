@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env ts-node
 
 import { createServer, IncomingMessage, ServerResponse } from 'http'
 import { request } from 'https'
