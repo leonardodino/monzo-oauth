@@ -89,11 +89,14 @@ const fetchToken = (params: StartBody, code: string) =>
       },
     }
 
-    const req = request(tokenUrl, options, (res) => {
-      if (!res.statusCode || res.statusCode > 299) {
-        return reject(`HTTP ${res.statusCode || '000'} ${res.statusMessage}`)
-      }
-      read(res).then(JSON.parse).then(resolve, reject)
+    const req = request(tokenUrl, options, (res): void => {
+      read(res).then((body) => {
+        if (res.headers['content-type']?.includes('application/json')) {
+          Promise.resolve(body).then(JSON.parse).then(resolve, reject)
+        } else {
+          reject(`response is not json: "${body}"`)
+        }
+      }, reject)
     })
     req.on('error', reject)
     req.write(body)
