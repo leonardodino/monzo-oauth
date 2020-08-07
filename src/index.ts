@@ -28,7 +28,7 @@ type Handler = (req: IncomingMessage, res: ServerResponse) => Promise<string>
 
 const isStartBody = (input: any): input is StartBody => {
   if (!input || typeof input !== 'object') return false
-  return ['clientId', 'redirectUri', 'csrfToken'].every(
+  return ['clientId', 'clientSecret', 'redirectUri', 'csrfToken'].every(
     (property) => input[property] && typeof input[property] === 'string',
   )
 }
