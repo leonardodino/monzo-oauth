@@ -508,6 +508,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@open-draft/until@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@open-draft/until/-/until-1.0.3.tgz#db9cc719191a62e7d9200f6e7bab21c5b848adca"
+  integrity sha512-Aq58f5HiWdyDlFffbbSjAlv596h/cOnt2DO1w3DOC7OJ5EHs0hd/nycJfiu9RJbT6Yk6F1knnRRXNSpxoIVZ9Q==
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
@@ -626,6 +631,11 @@
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
   integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
+
+"@types/wait-on@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@types/wait-on/-/wait-on-4.0.0.tgz#fb6fa2854b592f7344f1dd9836b5655795510dce"
+  integrity sha512-Cj2jcMOzrdvWMP+Vl+qlz942eQfJk96S9kRnB1ejVMl+w9/9mUn0+pF4J+v0Iv+6zCrmBBODZAXKsRo6Y91Cfw==
 
 "@types/yargs-parser@*":
   version "15.0.0"
@@ -2032,6 +2042,11 @@ hasha@^5.0.0:
     is-stream "^2.0.0"
     type-fest "^0.8.0"
 
+headers-utils@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/headers-utils/-/headers-utils-1.2.0.tgz#5e10d1bc9d2bccf789547afca5b991a3167241e8"
+  integrity sha512-4/BMXcWrJErw7JpM87gF8MNEXcIMLzepYZjNRv/P9ctgupl2Ywa3u1PgHtNhSRq84bHH9Ndlkdy7bSi+bZ9I9A==
+
 homedir-polyfill@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/homedir-polyfill/-/homedir-polyfill-1.0.3.tgz#743298cef4e5af3e194161fbadcc2151d3a058e8"
@@ -3247,6 +3262,15 @@ node-preload@^0.2.1:
   integrity sha512-RM5oyBy45cLEoHqCeh+MNuFAxO0vTFBLskvQbOKnEE7YTTSN4tbN8QWDIPQ6L+WvKsB/qLEGpYe2ZZ9d4W9OIQ==
   dependencies:
     process-on-spawn "^1.0.0"
+
+node-request-interceptor@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/node-request-interceptor/-/node-request-interceptor-0.3.3.tgz#4227763d1d8d696fc15f7d6e1fe0ed1dd8c9d86d"
+  integrity sha512-NLFD4F7sB72WSVI7YYQzaRa7PkhdbXL1cPNvu2LlGkmnLbE11EEKrRmie5gDOKy3xfk22xXPk654CbiFwaBLdA==
+  dependencies:
+    "@open-draft/until" "^1.0.3"
+    debug "^4.1.1"
+    headers-utils "^1.2.0"
 
 nodemon@^2.0.4:
   version "2.0.4"

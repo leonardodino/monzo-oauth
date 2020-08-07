@@ -5,7 +5,7 @@ process.env.PORT = port.toString()
 
 if (port === 0) throw new Error('PORT=0 is not supported during tests')
 
-const command = npx ? 'npx ./monzo-oauth.tgz' : 'ts-node ./src'
+const command = npx ? 'npx ./monzo-oauth.tgz' : 'ts-node -r ./test/server ./src'
 const usedPortAction = CI ? 'kill' : 'error'
 const options = { env: process.env }
 
