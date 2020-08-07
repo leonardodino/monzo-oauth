@@ -1,23 +1,8 @@
-const selectors = {
-  csrfTokenInput: 'form input[name="csrfToken"]',
-  redirectUriInput: 'form input[value^="http"]',
-  clientIdInput: 'form input[placeholder^="oauth2client_"]',
-  clientSecretInput: 'form input[placeholder^="mnzconf."]',
-  submitButton: 'form button[type="submit"]',
-}
-
-const data = {
-  redirectUri: `http://localhost:${process.env.PORT}`,
-  clientName: 'monzo-oauth-e2e-test',
-  clientSecret:
-    'mnzpub.l2yBeJK2GARi8Fb5hpntxLL6ZKVuNw42rUtb49GMfubr1BDYxm3dcMBwbpcP4DqqWPWRkNGAg3h3afcHiRa9',
-  clientId: 'oauth2client_00009xjM6jHY2zK9LQG2wj',
-}
+import { selectors, data } from './config'
 
 const authUrlRegex = /^https:\/\/auth\.monzo\.com\/\?client_id=oauth2client_00009xjM6jHY2zK9LQG2wj&redirect_uri=http%3A%2F%2Flocalhost%3A\d+&response_type=code&state=[a-z0-9]{7,}$/
 
-const getCsrfToken = () =>
-  page.$eval<string, HTMLInputElement>(selectors.csrfTokenInput, (e) => e.value)
+const getCsrfToken = () => page.$eval(selectors.csrfTokenInput, (e) => e.value)
 
 const getFormValidity = () => page.$eval('form', (e) => e.checkValidity())
 
