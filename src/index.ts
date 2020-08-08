@@ -1,13 +1,19 @@
 #!/usr/bin/env ts-node
 
-import { createServer, IncomingMessage, ServerResponse } from 'http'
+import { createServer } from 'http'
 import { request } from 'https'
 import { readFileSync } from 'fs'
+import { parse as parseUrl } from 'url'
 import { join } from 'path'
 import { parse, stringify } from 'querystring'
+import type { IncomingMessage, ServerResponse } from 'http'
+import type { ParsedUrlQuery } from 'querystring'
+import type { AddressInfo } from 'net'
 
 const hostname = 'localhost'
-let port = process.env.PORT ? parseInt(process.env.PORT) : 5000
+let port = process.env.PORT
+  ? parseInt(process.env.PORT)
+  : /* istanbul ignore next */ 5000
 
 const loginUrl = 'https://auth.monzo.com/'
 const tokenUrl = 'https://api.monzo.com/oauth2/token'
@@ -26,19 +32,15 @@ type CodeQueryString = {
 
 type Handler = (req: IncomingMessage, res: ServerResponse) => Promise<string>
 
-const isStartBody = (input: any): input is StartBody => {
-  if (!input || typeof input !== 'object') return false
-  return ['clientId', 'clientSecret', 'redirectUri', 'csrfToken'].every(
+const isStartBody = (input: ParsedUrlQuery): input is StartBody =>
+  ['clientId', 'clientSecret', 'redirectUri', 'csrfToken'].every(
     (property) => input[property] && typeof input[property] === 'string',
   )
-}
 
-const isCodeQueryString = (input: any): input is CodeQueryString => {
-  if (!input || typeof input !== 'object') return false
-  return ['code', 'state'].every(
+const isCodeQueryString = (input: ParsedUrlQuery): input is CodeQueryString =>
+  ['code', 'state'].every(
     (property) => input[property] && typeof input[property] === 'string',
   )
-}
 
 const memory = new Map<string, StartBody>()
 
@@ -135,12 +137,12 @@ const handler: Handler = async (req, res) => {
     return renderRedirect({ authUrl })
   }
 
-  if (req.method === 'GET' && /\?./.test(req.url || '')) {
-    const qs = parse(req.url!.replace(/^.+\?/, ''))
-    if (!isCodeQueryString(qs)) throw 'invalid query string'
-    const data = memory.get(qs.state)
+  if (req.method === 'GET' && req.url && /\?./.test(req.url)) {
+    const { query } = parseUrl(req.url, true)
+    if (!isCodeQueryString(query)) throw 'invalid query string'
+    const data = memory.get(query.state)
     if (!data) throw 'unknown "state"'
-    return renderJSON(await fetchToken(data, qs.code))
+    return renderJSON(await fetchToken(data, query.code))
   }
 
   return renderForm({
@@ -154,9 +156,8 @@ const server = createServer((req, res) => {
   const promise = handler(req, res).then(
     (body) => res.end(body),
     (error) => {
-      const status = typeof error === 'string' ? 400 : 500
-      if (!res.headersSent) res.statusCode = status
-      res.end(renderJSON({ error: error?.message || error || 'unknown' }))
+      res.statusCode = typeof error === 'string' ? 400 : 500
+      res.end(renderJSON({ error: error.message || error }))
     },
   )
   console.time(request)
@@ -164,7 +165,6 @@ const server = createServer((req, res) => {
 })
 
 const listener = server.listen(port, hostname, () => {
-  const address = listener.address()
-  port = (typeof address === 'object' && address?.port) || port
+  port = (listener.address() as AddressInfo).port
   console.log(`server listening on http://${hostname}:${port}`)
 })
