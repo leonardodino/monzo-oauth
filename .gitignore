@@ -5,4 +5,5 @@ coverage/
 *.tsbuildinfo
 *.log
 *.tgz
-dist/
+*.js
+*.tmp

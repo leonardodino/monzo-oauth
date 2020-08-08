@@ -8,4 +8,5 @@ jobs:
       - uses: actions/setup-node@v1
       - uses: leonardodino/setup-playwright@main
       - run: yarn --frozen-lockfile
+      - run: yarn test && yarn nyc report
       - run: yarn e2e

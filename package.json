@@ -2,25 +2,24 @@
   "name": "monzo-oauth",
   "version": "0.0.0-alpha",
   "license": "MIT",
-  "bin": "./dist/index.js",
+  "bin": "./src/index.js",
   "repository": "leonardodino/monzo-oauth",
   "homepage": "https://monzo-oauth.glitch.me",
   "files": [
-    "dist/**"
+    "src/**.{js,html}"
   ],
   "engines": {
     "node": ">=8"
   },
   "scripts": {
     "dev": "nodemon ./src/index.ts",
-    "start": "node ./dist/index.js",
-    "prebuild": "rm -rf dist",
-    "build": "tsc && cp src/*.html dist && chmod +x dist/index.js",
-    "postbuild": "echo \"$(awk '{sub(/ts-node/, \"node\"); print}' dist/index.js)\" > dist/index.js",
+    "start": "node ./src/index.js",
+    "prebuild": "rm -rf ./src/index.js && tsc",
+    "build": "tsc --noEmit false ./src/index.ts && chmod +x ./src/index.js",
+    "postbuild": "sed -i.tmp 's/ts-node/node/' src/index.js && rm src/index.js.tmp",
     "test": "JEST_PLAYWRIGHT_CONFIG=jest-playwright.config.ts jest",
-    "genv": "env",
     "e2e": "yarn build && yarn pack --filename monzo-oauth.tgz && npx=true yarn test",
-    "prepublishOnly": "yarn e2e",
+    "prepublishOnly": "yarn test && yarn e2e",
     "format": "prettier --write --ignore-path .gitignore ."
   },
   "devDependencies": {
@@ -50,17 +49,6 @@
     ],
     "transform": {
       "^.+\\.ts$": "ts-jest"
-    },
-    "globals": {
-      "ts-jest": {
-        "tsConfig": {
-          "types": [
-            "jest",
-            "jest-playwright-preset",
-            "expect-playwright"
-          ]
-        }
-      }
     }
   }
 }

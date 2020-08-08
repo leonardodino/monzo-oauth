@@ -1,9 +1,9 @@
 {
-  "include": ["src"],
   "compilerOptions": {
-    "outDir": "dist",
+    "noEmit": true,
     "strict": true,
     "module": "commonjs",
-    "target": "es2018"
+    "target": "es2018",
+    "types": ["jest", "jest-playwright-preset", "expect-playwright"]
   }
 }
