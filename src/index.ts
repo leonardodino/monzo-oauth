@@ -151,18 +151,14 @@ const handler: Handler = async (req, res) => {
   })
 }
 
-const server = createServer((req, res) => {
-  const request = `${req.method} ${req.url?.replace(/\?.*/, '')}`
-  const promise = handler(req, res).then(
-    (body) => res.end(body),
-    (error) => {
+const server = createServer((req, res) =>
+  handler(req, res)
+    .catch((error) => {
       res.statusCode = typeof error === 'string' ? 400 : 500
-      res.end(renderJSON({ error: error.message || error }))
-    },
-  )
-  console.time(request)
-  promise.then(() => console.timeEnd(request))
-})
+      return renderJSON({ error: error.message || error })
+    })
+    .then((body) => res.end(body)),
+)
 
 const listener = server.listen(port, hostname, () => {
   port = (listener.address() as AddressInfo).port
