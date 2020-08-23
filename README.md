@@ -1,4 +1,4 @@
-# monzo-oauth
+# monzo-oauth &nbsp;[![test](https://github.com/leonardodino/monzo-oauth/workflows/test/badge.svg)](https://github.com/leonardodino/monzo-oauth/actions?query=workflow:test) [![coverage](https://badgen.net/codecov/c/github/leonardodino/monzo-oauth)](https://codecov.io/gh/leonardodino/monzo-oauth) [![dependencies](https://david-dm.org/leonardodino/monzo-oauth.svg)](https://david-dm.org/leonardodino/monzo-oauth) [![license](https://badgen.net/github/license/leonardodino/monzo-oauth)](./LICENSE)
 
 [<img src="https://user-images.githubusercontent.com/8649362/90971126-a3dcae00-e504-11ea-86c3-ee28457a9beb.png" width="721px" alt="monzo-oauth">](https://github.com/leonardodino/monzo-oauth)
 
@@ -30,19 +30,6 @@ feel free to report any security issues or concerns.
 - [**`node`**](https://nodejs.org/) v8 or newer
 - **`browser`** any web browser
 
-##
+## disclaimer
 
-<br>
-
-[![test](https://github.com/leonardodino/monzo-oauth/workflows/test/badge.svg)](https://github.com/leonardodino/monzo-oauth/actions?query=workflow:test)
-[![coverage](https://badgen.net/codecov/c/github/leonardodino/monzo-oauth)](https://codecov.io/gh/leonardodino/monzo-oauth)
-[![install size](https://badgen.net/packagephobia/install/monzo-oauth)](https://packagephobia.com/result?p=monzo-oauth)
-[![dependencies](https://david-dm.org/leonardodino/monzo-oauth.svg)](https://david-dm.org/leonardodino/monzo-oauth)
-[![npm](https://badgen.net/npm/v/monzo-oauth)](https://www.npmjs.com/package/monzo-oauth)
-[![license](https://badgen.net/github/license/leonardodino/monzo-oauth)](./LICENSE)
-
-##
-
-<br>
-
-<sup>this project is not affiliated, associated, authorized, endorsed by, or in any way officially connected to [monzo](https://monzo.com).</sup>
+this project is not affiliated, associated, authorized, endorsed by, or in any way officially connected to [monzo](https://monzo.com).
