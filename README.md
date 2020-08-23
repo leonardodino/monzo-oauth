@@ -1,5 +1,10 @@
 # monzo-oauth
 
+[![test](https://github.com/leonardodino/monzo-oauth/workflows/test/badge.svg)](https://github.com/leonardodino/monzo-oauth/actions?query=workflow:test)
+[![coverage](https://badgen.net/codecov/c/github/leonardodino/monzo-oauth)](https://codecov.io/gh/leonardodino/monzo-oauth)
+[![install size](https://badgen.net/packagephobia/install/monzo-oauth)](https://packagephobia.com/result?p=monzo-oauth)
+[![dependencies](https://david-dm.org/leonardodino/monzo-oauth.svg)](https://david-dm.org/leonardodino/monzo-oauth)
+
 [<img src="https://user-images.githubusercontent.com/8649362/90971126-a3dcae00-e504-11ea-86c3-ee28457a9beb.png" width="721px" alt="monzo-oauth">](https://github.com/leonardodino/monzo-oauth)
 
 tiny web app for getting your personal [**`monzo`**](https://monzo.com/) [OAuth token](https://docs.monzo.com/#authentication).
