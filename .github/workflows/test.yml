@@ -6,7 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
+      - uses: codecov/codecov-action@v1
       - uses: leonardodino/setup-playwright@main
       - run: yarn --frozen-lockfile
-      - run: yarn test && yarn nyc report
+      - run: yarn test && yarn nyc report -r lcov -r text
       - run: yarn e2e
