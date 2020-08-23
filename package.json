@@ -4,7 +4,7 @@
   "license": "MIT",
   "bin": "./src/index.js",
   "repository": "leonardodino/monzo-oauth",
-  "homepage": "https://monzo-oauth.glitch.me",
+  "homepage": "https://github.com/leonardodino/monzo-oauth#readme",
   "files": [
     "src/**.{js,html}"
   ],
