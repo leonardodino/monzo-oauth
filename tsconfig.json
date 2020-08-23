@@ -1,9 +1,11 @@
 {
+  "exclude": ["jest-playwright.config.ts"],
   "compilerOptions": {
     "noEmit": true,
     "strict": true,
     "module": "commonjs",
     "target": "es2018",
+    "isolatedModules": true,
     "types": ["jest", "jest-playwright-preset", "expect-playwright"]
   }
 }
