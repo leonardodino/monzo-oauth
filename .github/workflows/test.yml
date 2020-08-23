@@ -8,6 +8,7 @@ jobs:
       - uses: actions/setup-node@v1
       - uses: leonardodino/setup-playwright@main
       - run: yarn --frozen-lockfile
+      - run: yarn lint
       - run: yarn test && yarn nyc report -r lcov -r text
       - uses: codecov/codecov-action@v1
       - run: yarn e2e

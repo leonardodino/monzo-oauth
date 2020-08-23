@@ -1,6 +1,6 @@
 import { parse } from 'url'
 import { stringify } from 'querystring'
-import type {ParsedUrlQueryInput} from 'querystring'
+import type { ParsedUrlQueryInput } from 'querystring'
 import { selectors, data } from './config'
 
 export const navigate = (path: string, query?: ParsedUrlQueryInput) => {

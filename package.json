@@ -20,7 +20,8 @@
     "test": "JEST_PLAYWRIGHT_CONFIG=jest-playwright.config.ts jest",
     "e2e": "yarn build && yarn pack --filename monzo-oauth.tgz && npx=true yarn test",
     "prepublishOnly": "yarn test && yarn e2e",
-    "format": "prettier --write --ignore-path .gitignore ."
+    "lint": "prettier --check .",
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.1",

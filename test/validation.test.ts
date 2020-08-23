@@ -21,7 +21,7 @@ test.each([['clientId'], ['clientSecret']])(
   async (field) => {
     // disable validation so we can actually submit
     await page.$eval('form', (e) => (e.noValidate = true))
-    await Promise.all([page.waitForNavigation(), fillWith({[field]: ''})])
+    await Promise.all([page.waitForNavigation(), fillWith({ [field]: '' })])
     await expect(page).toHaveText('body', '"error": "invalid values"')
   },
 )
